@@ -3,13 +3,15 @@
 set -exuo pipefail
 
 mkdir -p "${PREFIX}/include"
-mkdir -p "${PREFIX}/lib"
+mkdir -p "${PREFIX}/lib/cmake"
 cp -pr include/onnxruntime "${PREFIX}/include/"
+cp -pr lib/cmake/onnxruntime "${PREFIX}/lib/cmake/"
 
 if [[ -n "${OSX_ARCH:+yes}" ]]; then
     install build-ci/Release/libonnxruntime.*dylib "${PREFIX}/lib"
 else
     install build-ci/Release/libonnxruntime.so* "${PREFIX}/lib"
+    cp -ra
     if [[ ! -z "${cuda_compiler_version+x}" && "${cuda_compiler_version}" != "None" ]]; then
         install build-ci/Release/libonnxruntime_providers_shared.so* "${PREFIX}/lib"
         install build-ci/Release/libonnxruntime_providers_cuda.so* "${PREFIX}/lib"
