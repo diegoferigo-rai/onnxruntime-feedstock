@@ -59,7 +59,9 @@ cmake_extra_defines=( "EIGEN_MPL2_ONLY=ON" \
                       "onnxruntime_BUILD_SHARED_LIB=ON" \
                       "onnxruntime_BUILD_UNIT_TESTS=$BUILD_UNIT_TESTS" \
                       "CMAKE_PREFIX_PATH=$PREFIX" \
-                      "CMAKE_CUDA_ARCHITECTURES=all-major"
+                      "CMAKE_CUDA_ARCHITECTURES=all-major" \
+"CMAKE_INSTALL_PREFIX=$PREFIX" \
+"CMAKE_INSTALL_LIBDIR=lib"
 )
 
 # Copy the defines from the "activate" script (e.g. activate-gcc_linux-aarch64.sh)
@@ -87,6 +89,8 @@ python tools/ci_build/build.py \
     --skip_submodule_sync \
     --path_to_protoc_exe $BUILD_PREFIX/bin/protoc \
     ${BUILD_ARGS}
+
+cake --install build/Release --prefix "$PREFIX"
 
 for whl_file in build-ci/Release/dist/onnxruntime*.whl; do
     python -m pip install "$whl_file"
