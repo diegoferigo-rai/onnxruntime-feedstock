@@ -59,9 +59,7 @@ cmake_extra_defines=( "EIGEN_MPL2_ONLY=ON" \
                       "onnxruntime_BUILD_SHARED_LIB=ON" \
                       "onnxruntime_BUILD_UNIT_TESTS=$BUILD_UNIT_TESTS" \
                       "CMAKE_PREFIX_PATH=$PREFIX" \
-                      "CMAKE_CUDA_ARCHITECTURES=all-major" \
-                      "CMAKE_INSTALL_PREFIX=$PREFIX" \
-                      "CMAKE_INSTALL_LIBDIR=lib"
+                      "CMAKE_CUDA_ARCHITECTURES=all-major"
 )
 
 # Copy the defines from the "activate" script (e.g. activate-gcc_linux-aarch64.sh)
