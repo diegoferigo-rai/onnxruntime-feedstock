@@ -90,7 +90,9 @@ python tools/ci_build/build.py \
     --path_to_protoc_exe $BUILD_PREFIX/bin/protoc \
     ${BUILD_ARGS}
 
-cmake --install build-ci/Release --prefix "$PREFIX"
+# Install the project into cwd.
+# This is needed only to produce the exported CMake targets.
+cmake --install build-ci/Release --prefix "install-ci"
 
 for whl_file in build-ci/Release/dist/onnxruntime*.whl; do
     python -m pip install "$whl_file"
