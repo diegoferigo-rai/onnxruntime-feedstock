@@ -47,6 +47,7 @@ build:
   skip: true  # [ppc64le]
   # debug
   skip: true  # [py!=313]
+  skip: true  # [not win]
   string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ build_ext }}
   ignore_run_exports_from:
     - zlib
